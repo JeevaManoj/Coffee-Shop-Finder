@@ -1,5 +1,7 @@
 const mongoose = require('mongoose');
 
+// Model file for store data
+
 const storeSchema = new mongoose.Schema({
 
   storeName:{

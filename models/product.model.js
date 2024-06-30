@@ -1,5 +1,7 @@
 const mongoose = require('mongoose');
 
+// Model file for product data
+
 const productSchema = new mongoose.Schema({
 
   productName:{
@@ -24,7 +26,7 @@ const productSchema = new mongoose.Schema({
   },
   storeName: {
     type: String,
-    required: false
+    required: true
   }
   
 });

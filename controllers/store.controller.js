@@ -1,35 +1,38 @@
 const Store = require('../models/store.model');
 
+// Get all stores in the database
+
 module.exports.getAllStores = async (req, res, next) => {
-    try {
-      const { minRating, name, featured } = req.query;
-  
-      let filter = {};
-  
-      if (minRating) {
-        filter.rating = { $gte: minRating };
-      }
-  
-      if (name && name !== '') {
-        filter.storeName = new RegExp(name, 'i');
-      }
-  
-      if (featured && featured !== 'false') {
-    
-        filter.featured = featured === 'true'; 
-      } else {
-        
-        filter.featured = { $exists: true }; 
-      }
-  
-      const stores = await Store.find(filter);
-      res.status(200).json({ stores });
-    } catch (error) {
-      console.error(error);
-      res.status(500).json({ error: 'Internal Server Error' });
+  try {
+    const { minRating, name, featured } = req.query;
+
+    let filter = {};
+
+    if (minRating) {
+      filter.rating = { $gte: minRating };
     }
-  };
-  
+
+    if (name && name !== '') {
+      filter.storeName = new RegExp(name, 'i');
+    }
+
+    if (featured && featured !== 'false') {
+
+      filter.featured = featured === 'true';
+    } else {
+
+      filter.featured = { $exists: true };
+    }
+
+    const stores = await Store.find(filter);
+    res.status(200).json({ stores });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+};
+
+// Get a particular store details using ID
 
 module.exports.getStoreById = async (req, res, next) => {
   try {
@@ -43,9 +46,11 @@ module.exports.getStoreById = async (req, res, next) => {
     res.status(200).json({ store });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: 'Internal Server Error' }); 
+    res.status(500).json({ error: 'Internal Server Error' });
   }
 };
+
+// Add a store to the database
 
 module.exports.addStore = async (req, res, next) => {
   try {
