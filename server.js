@@ -25,10 +25,6 @@ const store = require('./routes/store.route.js');
 app.use('/products', product);
 app.use('/stores', store);
 
-app.get('/',() => {
-    res.json({"msg": "Hello World"})
-})
-
 app.listen(port, () => {
 
     console.log("Server is running on", port);
