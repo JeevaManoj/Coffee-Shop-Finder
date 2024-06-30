@@ -1,4 +1,5 @@
 const Product = require('../models/product.model');
+const mongoose = require('mongoose');
 
 module.exports.getAllProducts = async (req, res, next) => {
   try {
@@ -28,9 +29,9 @@ module.exports.getProductById = async (req, res, next) => {
 
 module.exports.getProductsByStoreId = async (req, res, next) => {
     try {
-      const { storeName } = req.params;
+      const { storeId } = req.params;
   
-      const products = await Product.find({ storeName });
+      const products = await Product.find({ storeName: new mongoose.Types.ObjectId(storeId) });
   
       if (!products.length) {
         return res.status(404).json({ error: 'No products found for this store' });
