@@ -7,18 +7,19 @@ module.exports.getAllStores = async (req, res, next) => {
       let filter = {};
   
       if (minRating) {
-        
         filter.rating = { $gte: minRating };
       }
   
-      if (name && name != '') {
-        
-        filter.name = new RegExp(name, 'i');
+      if (name && name !== '') {
+        filter.storeName = new RegExp(name, 'i');
       }
   
       if (featured) {
+    
+        filter.featured = featured === 'true'; 
+      } else {
         
-        filter.featured = featured === 'true';
+        filter.featured = { $exists: true }; 
       }
   
       const stores = await Store.find(filter);
@@ -28,6 +29,7 @@ module.exports.getAllStores = async (req, res, next) => {
       res.status(500).json({ error: 'Internal Server Error' });
     }
   };
+  
 
 module.exports.getStoreById = async (req, res, next) => {
   try {
