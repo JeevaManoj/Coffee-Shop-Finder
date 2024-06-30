@@ -11,7 +11,7 @@ module.exports.getAllStores = async (req, res, next) => {
         filter.rating = { $gte: minRating };
       }
   
-      if (name) {
+      if (name && name != '') {
         
         filter.name = new RegExp(name, 'i');
       }
