@@ -14,7 +14,7 @@ module.exports.getAllStores = async (req, res, next) => {
         filter.storeName = new RegExp(name, 'i');
       }
   
-      if (featured && featured != false) {
+      if (featured && featured !== 'false') {
     
         filter.featured = featured === 'true'; 
       } else {
