@@ -26,6 +26,23 @@ module.exports.getProductById = async (req, res, next) => {
   }
 };
 
+module.exports.getProductsByStoreId = async (req, res, next) => {
+    try {
+      const { storeName } = req.params;
+  
+      const products = await Product.find({ storeName });
+  
+      if (!products.length) {
+        return res.status(404).json({ error: 'No products found for this store' });
+      }
+  
+      res.status(200).json({ products });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: 'Internal Server Error' });
+    }
+  };
+
 module.exports.addProduct = async (req, res, next) => {
     try {
       
