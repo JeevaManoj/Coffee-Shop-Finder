@@ -1,14 +1,33 @@
 const Store = require('../models/store.model');
 
 module.exports.getAllStores = async (req, res, next) => {
-  try {
-    const stores = await Store.find();
-    res.status(200).json({ stores });
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: 'Internal Server Error' });
-  }
-};
+    try {
+      const { minRating, name, featured } = req.query;
+  
+      let filter = {};
+  
+      if (minRating) {
+        
+        filter.rating = { $gte: minRating };
+      }
+  
+      if (name) {
+        
+        filter.name = new RegExp(name, 'i');
+      }
+  
+      if (featured) {
+        
+        filter.featured = featured === 'true';
+      }
+  
+      const stores = await Store.find(filter);
+      res.status(200).json({ stores });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: 'Internal Server Error' });
+    }
+  };
 
 module.exports.getStoreById = async (req, res, next) => {
   try {
