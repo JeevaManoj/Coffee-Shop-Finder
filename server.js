@@ -33,6 +33,14 @@ const store = require('./routes/store.route.js');
 app.use('/products', product);
 app.use('/stores', store);
 
+// Test route to check whether server is running
+
+app.get('/', (req, res) => {
+
+    res.send('Server is running');
+
+});
+
 // Starting the server
 
 app.listen(port, () => {

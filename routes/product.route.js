@@ -4,7 +4,7 @@ const { getAllProducts, getProductById, addProduct, getProductsByStoreId } = req
 
 // Defining routes for products APIs
 
-router.get('/', getAllProducts);
+router.get('/', getAllProducts); 
 router.get('/product/:id', getProductById);
 router.get('/productByStoreId/:storeId', getProductsByStoreId)
 router.post('/add', addProduct)
