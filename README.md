@@ -1,4 +1,4 @@
-# Getting Started with Coffee Shop Finder Website
+# Getting Started
 
 This is the backend code for the Coffee Shop Finder Website written using NodeJS
 
@@ -17,6 +17,7 @@ This will install all the dependencies of the project
 Create a .env file and add the values for PORT and MONGO_DB like below
 
 PORT = 3000
+
 MONGO_DB = Your Mongo DB URL
 
 ### `npm start`
