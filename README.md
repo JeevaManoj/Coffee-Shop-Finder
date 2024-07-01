@@ -16,9 +16,9 @@ Run the following commands
 
 4. Create a .env file and add the values for PORT and MONGO_DB like below
 
-PORT = 3000
+    PORT = 3000
 
-MONGO_DB = Your Mongo DB URL
+    MONGO_DB = Your Mongo DB URL
 
 ### `npm start`
 
